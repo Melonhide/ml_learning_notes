@@ -51,6 +51,10 @@ Compared to our previous scoring method, the new XGBoost model reduced false pos
 I initially tested several models including logistic regression and random forest. Logistic regression was too limited in capturing non-linear patterns in our feature space. Random forest performed reasonably but lacked the fine control and regularization that XGBoost offers.
 XGBoost gave better precision and recall, especially after tuning, and its native handling of missing values was a big advantage for our dataset.
 
+Logistic Regression assumes a linear relationship between the input features and the log-odds of the positive class. It is simple, fast, and interpretable, but struggles when there are complex non-linear patterns or interactions among features. In our case, the borrower risk features had non-linear thresholds (e.g., sudden risk increase when LTV > 0.8), which made tree-based models like XGBoost more suitable.
+
+Unlike XGBoost, Random Forest lacks explicit regularization and does not optimize trees sequentially. Its trees are built independently using bootstrapped data, which reduces variance but lacks the feedback loop and error correction found in boosting frameworks.
+
 ---
 
 ### 2. What features did you use and how did you select them?
